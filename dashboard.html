@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Education Planning Dashboard</title>
+  <link rel="stylesheet" href="./dashboard.css">
+</head>
+<body>
+  <div class="dashboard-shell">
+    <header class="dashboard-hero">
+      <div>
+        <p class="eyebrow">Digital Education</p>
+        <h1>Planning Dashboard 26/27</h1>
+        <p class="hero-copy">
+          Use mock data to rehearse the conversation, or upload a real workbook exported from the planning app.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <button id="loadSampleBtn" class="primary-button">Load mock data</button>
+        <label class="upload-label">
+          <span>Upload workbook</span>
+          <input id="workbookInput" type="file" accept=".xls,.xml">
+        </label>
+      </div>
+    </header>
+
+    <section class="card-grid">
+      <article class="metric-card">
+        <span class="metric-label">Responses saved</span>
+        <strong id="responsesCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">People represented</span>
+        <strong id="peopleCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">More involvement: Yes</span>
+        <strong id="interestYesCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">More involvement: Maybe</span>
+        <strong id="interestMaybeCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">Skill growth flags</span>
+        <strong id="skillCount">0</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Theme summary</h2>
+        <p>Which themes are carrying current workload, interest, and development demand.</p>
+      </div>
+      <div id="themeSummary" class="summary-table"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Response explorer</h2>
+        <p>Use the dropdowns to narrow the saved responses quickly by person, theme, workstream, and interest profile.</p>
+      </div>
+      <div class="filter-grid">
+        <div class="field">
+          <label for="filterPersonSelect">Person</label>
+          <select id="filterPersonSelect"></select>
+        </div>
+        <div class="field">
+          <label for="filterThemeSelect">Theme</label>
+          <select id="filterThemeSelect"></select>
+        </div>
+        <div class="field">
+          <label for="filterWorkstreamSelect">Workstream</label>
+          <select id="filterWorkstreamSelect"></select>
+        </div>
+        <div class="field">
+          <label for="filterCurrentSelect">Current involvement</label>
+          <select id="filterCurrentSelect"></select>
+        </div>
+        <div class="field">
+          <label for="filterMoreSelect">More involvement</label>
+          <select id="filterMoreSelect"></select>
+        </div>
+        <div class="field">
+          <label for="filterSkillSelect">Skill growth</label>
+          <select id="filterSkillSelect"></select>
+        </div>
+      </div>
+      <div id="responseExplorer" class="summary-table"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Person summary</h2>
+        <p>A quick view of who is already leading or co-leading and where extra interest is clustering.</p>
+      </div>
+      <div id="personSummary" class="summary-table"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Ideas</h2>
+        <p>New ideas suggested outside the current workstream list.</p>
+      </div>
+      <div id="ideasSummary" class="ideas-table"></div>
+    </section>
+  </div>
+
+  <script src="./dashboard.js"></script>
+</body>
+</html>
+
