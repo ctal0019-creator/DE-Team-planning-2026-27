@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Education Planning 26/27</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="top-band">
+    <div class="top-band-inner">
+      <div class="brand-block">
+        <p class="eyebrow">Digital Education Team</p>
+        <p class="brand-subtitle">Centre for Teaching and Learning</p>
+        <h1>Planning Studio 26/27</h1>
+        <p class="intro">
+          Use this space to review work, interest, skill growth, and new ideas across the Digital Education themes for 2026/27 planning.
+        </p>
+        <ol class="instruction-list">
+          <li>Select your name.</li>
+          <li>Work through each theme one at a time.</li>
+          <li>For each workstream, note your current involvement.</li>
+          <li>Use <strong>More involvement</strong> to show whether you would like to do more in that area. Choose <strong>N/A</strong> where that question does not really apply.</li>
+          <li>Use <strong>Skill growth</strong> to show where you would like to build confidence or capability. Add a short note for additional context if you wish to do so.</li>
+          <li>Select another theme, then repeat as needed.</li>
+          <li>Download and share your data when you are finished.</li>
+        </ol>
+      </div>
+
+      <section class="top-panel top-panel-person">
+        <label class="field-label" for="personSelect">Whose review are you editing?</label>
+        <select id="personSelect"></select>
+        <p class="helper-text">Everything is saved automatically in this browser on this device.</p>
+      </section>
+
+      <section class="top-panel top-panel-themes">
+        <div class="panel-title-row">
+          <h2>Themes</h2>
+          <span id="themeProgress" class="badge"></span>
+        </div>
+        <nav id="themeNav" class="theme-nav"></nav>
+      </section>
+    </div>
+  </div>
+
+  <main class="main-content">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Current focus</p>
+          <h2 id="themeTitle"></h2>
+          <p id="themeDescription" class="hero-copy"></p>
+        </div>
+        <div class="hero-actions">
+          <button id="prevThemeBtn" class="ghost-button">Previous theme</button>
+          <button id="nextThemeBtn" class="primary-button">Next theme</button>
+        </div>
+      </header>
+
+      <section>
+        <div class="section-heading">
+          <h3>Theme workstreams</h3>
+          <p>Review one theme at a time and keep notes light.</p>
+        </div>
+        <div id="workstreamList" class="workstream-list"></div>
+      </section>
+
+      <section class="summary-strip">
+        <article class="summary-card">
+          <span class="summary-label">Areas leading or co-leading</span>
+          <strong id="leadingCount">0</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">More involvement: Yes</span>
+          <strong id="interestYesCount">0</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">More involvement: Maybe</span>
+          <strong id="interestMaybeCount">0</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Wants skill growth</span>
+          <strong id="skillCount">0</strong>
+        </article>
+      </section>
+
+      <section class="ideas-section">
+        <div class="section-heading">
+          <h3>New ideas</h3>
+          <p>Use this for missing workstreams or new pieces of work that are not on the list yet.</p>
+        </div>
+
+        <form id="ideaForm" class="idea-form">
+          <div class="form-row">
+            <div class="field">
+              <label class="field-label" for="ideaTheme">Theme</label>
+              <select id="ideaTheme"></select>
+            </div>
+            <div class="field field-wide">
+              <label class="field-label" for="ideaTitle">Idea title</label>
+              <input id="ideaTitle" type="text" maxlength="120" placeholder="Short label for the idea">
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="ideaDescription">Idea description</label>
+            <textarea id="ideaDescription" rows="3" placeholder="What is missing or worth adding?"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-button">Add idea</button>
+          </div>
+        </form>
+
+        <div id="ideasList" class="ideas-list"></div>
+      </section>
+
+      <section class="footer-theme-nav">
+        <div class="button-stack">
+          <button id="nextThemeBtnBottom" class="primary-button">Next theme</button>
+        </div>
+      </section>
+
+      <section class="team-section">
+        <div class="section-heading">
+          <h3>Team picture</h3>
+          <p>Everyone’s saved contributions in one place. Please note this is currently only showing your contributions only.</p>
+        </div>
+
+        <div class="filters">
+          <div class="field">
+            <label class="field-label" for="teamFilterPerson">Filter by person</label>
+            <select id="teamFilterPerson"></select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="teamFilterTheme">Filter by theme</label>
+            <select id="teamFilterTheme"></select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Person</th>
+                <th>Theme</th>
+                <th>Workstream</th>
+                <th>Current involvement</th>
+                <th>More involvement</th>
+                <th>Skill growth</th>
+                <th>Note</th>
+              </tr>
+            </thead>
+            <tbody id="teamTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="footer-actions">
+        <div class="section-heading">
+          <h3>Data</h3>
+          <p>Download the current workbook to share it. Reset local copy clears the saved data from this browser on this device.</p>
+        </div>
+        <div class="button-stack">
+          <button id="downloadBtn" class="secondary-button">Download workbook</button>
+          <button id="resetBtn" class="ghost-button">Reset local copy</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="workstreamTemplate">
+    <article class="workstream-card">
+      <div class="workstream-header">
+        <h4 class="workstream-title"></h4>
+      </div>
+      <div class="card-grid">
+        <div class="field">
+          <label class="field-label">Current involvement</label>
+          <select class="current-select">
+            <option value="">Select</option>
+            <option value="Not involved">Not involved</option>
+            <option value="A little">A little</option>
+            <option value="Regularly involved">Regularly involved</option>
+            <option value="Leading">Leading or co-leading</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">More involvement?</label>
+          <select class="more-select">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="Maybe">Maybe</option>
+            <option value="No">No</option>
+            <option value="N/A">N/A</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Skill growth?</label>
+          <select class="skill-select">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="Maybe">Maybe</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Note</label>
+        <textarea class="note-input" rows="2" placeholder="Optional note"></textarea>
+      </div>
+    </article>
+  </template>
+  <script src="./app.js"></script>
+</body>
+</html>
