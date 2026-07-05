@@ -634,7 +634,7 @@ function buildSheetXml(rows) {
       .map((row, rowIndex) => `<row r="${rowIndex + 1}">
       ${row
         .map((cell, cellIndex) => `<c r="${columnName(cellIndex + 1)}${rowIndex + 1}" t="inlineStr"${rowIndex === 0 ? ' s="1"' : ""}>
-        <is><t>${xmlEscape(cell)}</t></is>
+        <is><t xml:space="preserve">${xmlEscape(cell)}</t></is>
       </c>`)
         .join("")}
     </row>`)
@@ -645,12 +645,20 @@ function buildSheetXml(rows) {
 }
 
 function xmlEscape(value) {
-  return String(value ?? "")
+  return sanitizeXmlText(String(value ?? ""))
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;");
+}
+
+function sanitizeXmlText(value) {
+  return value
+    .replaceAll("\r\n", "\n")
+    .replaceAll("\r", "\n")
+    // Remove characters not permitted in XML 1.0.
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uD800-\uDFFF\uFFFE\uFFFF]/g, "");
 }
 
 function columnName(index) {
