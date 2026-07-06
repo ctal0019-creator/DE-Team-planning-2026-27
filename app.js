@@ -629,6 +629,11 @@ function buildSheetXml(rows) {
   const cols = Math.max(...rows.map((row) => row.length), 1);
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <dimension ref="A1:${columnName(cols)}${rows.length}"/>
+  <sheetViews>
+    <sheetView workbookViewId="0"/>
+  </sheetViews>
+  <sheetFormatPr defaultRowHeight="15"/>
   <sheetData>
     ${rows
       .map((row, rowIndex) => `<row r="${rowIndex + 1}">
@@ -640,7 +645,6 @@ function buildSheetXml(rows) {
     </row>`)
       .join("")}
   </sheetData>
-  <dimension ref="A1:${columnName(cols)}${rows.length}"/>
 </worksheet>`;
 }
 
@@ -654,11 +658,26 @@ function xmlEscape(value) {
 }
 
 function sanitizeXmlText(value) {
-  return value
+  const normalized = value
     .replaceAll("\r\n", "\n")
-    .replaceAll("\r", "\n")
-    // Remove characters not permitted in XML 1.0.
-    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uD800-\uDFFF\uFFFE\uFFFF]/g, "");
+    .replaceAll("\r", "\n");
+
+  let safe = "";
+  for (const char of normalized) {
+    const codePoint = char.codePointAt(0);
+    if (
+      codePoint === 0x9 ||
+      codePoint === 0xa ||
+      codePoint === 0xd ||
+      (codePoint >= 0x20 && codePoint <= 0xd7ff) ||
+      (codePoint >= 0xe000 && codePoint <= 0xfffd) ||
+      (codePoint >= 0x10000 && codePoint <= 0x10ffff)
+    ) {
+      safe += char;
+    }
+  }
+
+  return safe;
 }
 
 function columnName(index) {
