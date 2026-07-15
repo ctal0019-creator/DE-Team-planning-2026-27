@@ -14,6 +14,7 @@ const filterSkillSelect = document.getElementById("filterSkillSelect");
 const responseExplorer = document.getElementById("responseExplorer");
 const themeSummary = document.getElementById("themeSummary");
 const personSummary = document.getElementById("personSummary");
+const currentWorkstreamsSummary = document.getElementById("currentWorkstreamsSummary");
 const ideasSummary = document.getElementById("ideasSummary");
 const loadSampleBtn = document.getElementById("loadSampleBtn");
 const workbookInput = document.getElementById("workbookInput");
@@ -54,7 +55,7 @@ renderDashboard();
 
 function renderDashboard() {
   const { responses, ideas } = currentDataset;
-  responsesCount.textContent = responses.length;
+  responsesCount.textContent = responses.filter((entry) => isActive(entry.current)).length;
   peopleCount.textContent = new Set(responses.map((entry) => entry.person)).size;
   interestYesCount.textContent = responses.filter((entry) => entry.more === "Yes").length;
   interestMaybeCount.textContent = responses.filter((entry) => entry.more === "Maybe").length;
@@ -64,6 +65,7 @@ function renderDashboard() {
   syncExplorerFilters(responses);
   renderResponseExplorer();
   renderPersonSummary(responses);
+  renderCurrentWorkstreamsSummary(responses);
   renderIdeas(ideas);
 }
 
@@ -182,22 +184,26 @@ function renderThemeSummary(responses) {
   const rows = Object.entries(grouped)
     .map(([theme, items]) => ({
       theme,
-      responses: items.length,
+      active: items.filter((entry) => isActive(entry.current)).length,
+      completed: items.length,
+      notInvolved: items.filter((entry) => entry.current === "Not involved").length,
       leading: items.filter((entry) => isLeading(entry.current)).length,
       interestYes: items.filter((entry) => entry.more === "Yes").length,
       interestMaybe: items.filter((entry) => entry.more === "Maybe").length,
       skill: items.filter((entry) => entry.skill === "Yes").length,
     }))
-    .sort((a, b) => b.responses - a.responses);
+    .sort((a, b) => b.active - a.active || b.completed - a.completed || a.theme.localeCompare(b.theme));
 
-  const maxResponses = Math.max(...rows.map((row) => row.responses), 1);
+  const maxActive = Math.max(...rows.map((row) => row.active), 1);
 
   themeSummary.innerHTML = `
     <table>
       <thead>
         <tr>
           <th>Theme</th>
-          <th>Responses</th>
+          <th>Active involvement</th>
+          <th>Completed responses</th>
+          <th>Not involved</th>
           <th>Current leads or co-leads</th>
           <th>More involvement: Yes</th>
           <th>More involvement: Maybe</th>
@@ -211,14 +217,16 @@ function renderThemeSummary(responses) {
             (row) => `
           <tr>
             <td>${escapeHtml(row.theme)}</td>
-            <td>${row.responses}</td>
+            <td>${row.active}</td>
+            <td>${row.completed}</td>
+            <td>${row.notInvolved}</td>
             <td>${row.leading}</td>
             <td>${row.interestYes}</td>
             <td>${row.interestMaybe}</td>
             <td>${row.skill}</td>
             <td>
               <div class="bar-track">
-                <div class="bar-fill" style="width:${(row.responses / maxResponses) * 100}%"></div>
+                <div class="bar-fill" style="width:${(row.active / maxActive) * 100}%"></div>
               </div>
             </td>
           </tr>`,
@@ -239,20 +247,20 @@ function renderPersonSummary(responses) {
   const rows = Object.entries(grouped)
     .map(([person, items]) => ({
       person,
-      responses: items.length,
+      active: items.filter((entry) => isActive(entry.current)).length,
       leading: items.filter((entry) => isLeading(entry.current)).length,
       interestYes: items.filter((entry) => entry.more === "Yes").length,
       interestMaybe: items.filter((entry) => entry.more === "Maybe").length,
       skill: items.filter((entry) => entry.skill === "Yes").length,
     }))
-    .sort((a, b) => a.person.localeCompare(b.person));
+    .sort((a, b) => b.active - a.active || a.person.localeCompare(b.person));
 
   personSummary.innerHTML = `
     <table>
       <thead>
         <tr>
           <th>Person</th>
-          <th>Responses</th>
+          <th>Active involvement</th>
           <th>Leading or co-leading</th>
           <th>More involvement: Yes</th>
           <th>More involvement: Maybe</th>
@@ -265,7 +273,7 @@ function renderPersonSummary(responses) {
             (row) => `
           <tr>
             <td>${escapeHtml(row.person)}</td>
-            <td>${row.responses}</td>
+            <td>${row.active}</td>
             <td>${row.leading}</td>
             <td>${row.interestYes}</td>
             <td>${row.interestMaybe}</td>
@@ -303,6 +311,50 @@ function renderIdeas(ideas) {
             <td>${escapeHtml(idea.theme)}</td>
             <td>${escapeHtml(idea.title)}</td>
             <td>${escapeHtml(idea.description)}</td>
+          </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderCurrentWorkstreamsSummary(responses) {
+  if (responses.length === 0) {
+    currentWorkstreamsSummary.innerHTML = '<div class="empty-state">No response data loaded yet.</div>';
+    return;
+  }
+
+  const grouped = groupBy(responses, "person");
+  const rows = Object.entries(grouped)
+    .map(([person, items]) => ({
+      person,
+      leading: getWorkstreamList(items, "Leading or co-leading"),
+      regularlyInvolved: getWorkstreamList(items, "Regularly involved"),
+      aLittle: getWorkstreamList(items, "A little"),
+      activeCount: items.filter((entry) => isActive(entry.current)).length,
+    }))
+    .sort((a, b) => b.activeCount - a.activeCount || a.person.localeCompare(b.person));
+
+  currentWorkstreamsSummary.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th>Leading or co-leading workstreams</th>
+          <th>Regularly involved workstreams</th>
+          <th>A little workstreams</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows
+          .map(
+            (row) => `
+          <tr>
+            <td>${escapeHtml(row.person)}</td>
+            <td>${formatWorkstreamCell(row.leading)}</td>
+            <td>${formatWorkstreamCell(row.regularlyInvolved)}</td>
+            <td>${formatWorkstreamCell(row.aLittle)}</td>
           </tr>`,
           )
           .join("")}
@@ -359,6 +411,26 @@ function getSortedValues(items, key) {
 
 function isLeading(value) {
   return value === "Leading" || value === "Leading or co-leading";
+}
+
+function isActive(value) {
+  return value === "A little"
+    || value === "Regularly involved"
+    || value === "Leading"
+    || value === "Leading or co-leading";
+}
+
+function getWorkstreamList(items, currentValue) {
+  return items
+    .filter((entry) => entry.current === currentValue || (currentValue === "Leading or co-leading" && entry.current === "Leading"))
+    .map((entry) => entry.workstream)
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function formatWorkstreamCell(workstreams) {
+  if (workstreams.length === 0) return '<span class="muted-cell">None recorded</span>';
+  return `<div class="workstream-list">${workstreams.map((item) => `<div>${escapeHtml(item)}</div>`).join("")}</div>`;
 }
 
 function groupBy(items, key) {
