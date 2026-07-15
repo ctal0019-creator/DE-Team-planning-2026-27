@@ -1,55 +1,4 @@
-const sampleData = {
-  responses: [
-    ["Claudia Waldner", "AI", "AI in teaching and learning - define offer", "Leading", "N/A", "No", "Already coordinating related conversations"],
-    ["Claudia Waldner", "Planning, Reporting, Communications, and Evidence", "Evidencing and reporting our work", "Regularly involved", "Maybe", "No", ""],
-    ["Evi Liatiri", "Canvas and Digital Tools", "Day-to-day Canvas / VLE support", "Regularly involved", "No", "No", ""],
-    ["Evi Liatiri", "Canvas and Digital Tools", "Business continuity planning", "A little", "Yes", "Yes", "Would like more exposure here"],
-    ["Fawei Geng", "Digital Education Service Offer", "DE training offer, including asynchronous delivery", "Leading", "N/A", "No", ""],
-    ["Fawei Geng", "Digital Education Service Offer", "Support offer for departments and teams", "Regularly involved", "Maybe", "No", ""],
-    ["Jill Fresen", "Consultancy", "Lead and/or coordinate current consultancies", "A little", "Yes", "Yes", ""],
-    ["Jill Fresen", "Consultancy", "Consultancy service updates / enhancements", "A little", "Yes", "Yes", ""],
-    ["Maria Robertson", "Communities, Networks, and Sector Engagement", "KEFs and other events", "Regularly involved", "No", "No", ""],
-    ["Maria Robertson", "Communities, Networks, and Sector Engagement", "CMALT", "A little", "Maybe", "Yes", ""],
-    ["Marion Manton", "Underpinning Themes", "Digital Accessibility", "Leading", "N/A", "No", ""],
-    ["Marion Manton", "Underpinning Themes", "Professional development / upskilling for the DE team", "Regularly involved", "Maybe", "Yes", ""],
-    ["Martha Zumack", "Digital Education Leadership and Governance", "DE team reporting and metrics", "Regularly involved", "No", "Yes", ""],
-    ["Martha Zumack", "Digital Education Leadership and Governance", "Student feedback / APP / ACE metrics", "A little", "Yes", "Yes", ""],
-    ["Nithya Ramadoss", "AI", "AI support / upskilling for the DE team", "A little", "Yes", "Yes", ""],
-    ["Sandra Morales Rios", "Digital Education Service Offer", "DE service desk", "Regularly involved", "No", "No", ""],
-    ["Sandra Morales Rios", "Digital Education Service Offer", "Outreach programmes", "A little", "Maybe", "Yes", ""],
-    ["Tawa Edwards", "Canvas and Digital Tools", "Canvas for summative assessment considerations", "A little", "Yes", "Yes", ""],
-    ["Will Bowden-Benn", "Planning, Reporting, Communications, and Evidence", "Website", "A little", "Yes", "Yes", ""],
-    ["Xavier Laurent", "Underpinning Themes", "University data work", "A little", "Maybe", "Yes", ""],
-  ].map(([person, theme, workstream, current, more, skill, note]) => ({
-    person,
-    theme,
-    workstream,
-    current,
-    more,
-    skill,
-    note,
-  })),
-  ideas: [
-    {
-      person: "Claudia Waldner",
-      theme: "AI",
-      title: "AI guidance clinic",
-      description: "Short recurring clinic for emerging AI teaching questions.",
-    },
-    {
-      person: "Jill Fresen",
-      theme: "Consultancy",
-      title: "Consultancy triage slot",
-      description: "A lighter first-touch triage model before larger redesign work.",
-    },
-    {
-      person: "Marion Manton",
-      theme: "Underpinning Themes",
-      title: "Accessibility champions network",
-      description: "A distributed network to share local good practice.",
-    },
-  ],
-};
+const sampleData = window.dashboardData || { responses: [], ideas: [] };
 
 const responsesCount = document.getElementById("responsesCount");
 const peopleCount = document.getElementById("peopleCount");
@@ -128,7 +77,7 @@ function syncExplorerFilters(responses) {
   syncSelectOptions(filterPersonSelect, "person", responses, "person", "All people");
   syncSelectOptions(filterThemeSelect, "theme", responses, "theme", "All themes");
   syncSelectOptions(filterWorkstreamSelect, "workstream", responses, "workstream", "All workstreams");
-  syncFixedOptions(filterCurrentSelect, "current", ["Not involved", "A little", "Regularly involved", "Leading"], "All current involvement");
+  syncFixedOptions(filterCurrentSelect, "current", getSortedValues(responses, "current"), "All current involvement");
   syncFixedOptions(filterMoreSelect, "more", ["Yes", "Maybe", "No", "N/A"], "All more involvement");
   syncFixedOptions(filterSkillSelect, "skill", ["Yes", "Maybe", "No"], "All skill growth");
 }
@@ -234,7 +183,7 @@ function renderThemeSummary(responses) {
     .map(([theme, items]) => ({
       theme,
       responses: items.length,
-      leading: items.filter((entry) => entry.current === "Leading").length,
+      leading: items.filter((entry) => isLeading(entry.current)).length,
       interestYes: items.filter((entry) => entry.more === "Yes").length,
       interestMaybe: items.filter((entry) => entry.more === "Maybe").length,
       skill: items.filter((entry) => entry.skill === "Yes").length,
@@ -291,7 +240,7 @@ function renderPersonSummary(responses) {
     .map(([person, items]) => ({
       person,
       responses: items.length,
-      leading: items.filter((entry) => entry.current === "Leading").length,
+      leading: items.filter((entry) => isLeading(entry.current)).length,
       interestYes: items.filter((entry) => entry.more === "Yes").length,
       interestMaybe: items.filter((entry) => entry.more === "Maybe").length,
       skill: items.filter((entry) => entry.skill === "Yes").length,
@@ -402,6 +351,14 @@ function sheetToRows(sheet) {
       return data ? data.textContent : "";
     }),
   );
+}
+
+function getSortedValues(items, key) {
+  return [...new Set(items.map((item) => item[key]).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+function isLeading(value) {
+  return value === "Leading" || value === "Leading or co-leading";
 }
 
 function groupBy(items, key) {
