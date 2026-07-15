@@ -183,6 +183,15 @@ th {
   color: var(--muted);
 }
 
+.workstream-list {
+  display: grid;
+  gap: 6px;
+}
+
+.muted-cell {
+  color: var(--muted);
+}
+
 .bar-track {
   width: 100%;
   height: 10px;
