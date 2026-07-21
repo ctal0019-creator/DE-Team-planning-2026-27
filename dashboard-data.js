@@ -912,13 +912,43 @@ window.dashboardData = {
     },
     {
       "person": "Fawei Geng",
-      "theme": "Canvas and Digital Tools",
-      "workstream": "AI tools in Canvas",
+      "theme": "AI",
+      "workstream": "AI diagnostic / needs-analysis work",
       "current": "",
       "more": "",
       "skill": "",
+      "note": "Sorry, I missed the explanation of what this means...",
+      "updatedAt": "21/07/2026, 11:01:48"
+    },
+    {
+      "person": "Fawei Geng",
+      "theme": "AI",
+      "workstream": "AI in teaching and learning - define offer",
+      "current": "Leading or co-leading",
+      "more": "",
+      "skill": "Yes",
       "note": "",
-      "updatedAt": "10/07/2026, 12:57:13"
+      "updatedAt": "21/07/2026, 11:01:48"
+    },
+    {
+      "person": "Fawei Geng",
+      "theme": "AI",
+      "workstream": "AI support / upskilling for the DE team",
+      "current": "Leading or co-leading",
+      "more": "",
+      "skill": "Yes",
+      "note": "",
+      "updatedAt": "21/07/2026, 11:01:48"
+    },
+    {
+      "person": "Fawei Geng",
+      "theme": "AI",
+      "workstream": "AI tools in Canvas",
+      "current": "A little",
+      "more": "Maybe",
+      "skill": "Yes",
+      "note": "",
+      "updatedAt": "21/07/2026, 11:01:48"
     },
     {
       "person": "Fawei Geng",
@@ -1268,7 +1298,7 @@ window.dashboardData = {
       "more": "Yes",
       "skill": "Yes",
       "note": "",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1278,7 +1308,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "Not sure what are included although we have all been working aligned with the  initiatives and strategies",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1288,7 +1318,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "Not sure what are included, the CoPs work are cross -Oxford",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1298,7 +1328,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1308,7 +1338,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "CMALT?",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1318,7 +1348,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Jill Fresen",
