@@ -912,13 +912,53 @@ window.dashboardData = {
     },
     {
       "person": "Fawei Geng",
-      "theme": "Canvas and Digital Tools",
-      "workstream": "AI tools in Canvas",
+      "theme": "AI",
+      "workstream": "AI and summative assessment workshops and conversations",
+      "current": "A little",
+      "more": "Yes",
+      "skill": "Yes",
+      "note": "",
+      "updatedAt": "21/07/2026, 11:01:48"
+    },
+    {
+      "person": "Fawei Geng",
+      "theme": "AI",
+      "workstream": "AI diagnostic / needs-analysis work",
       "current": "",
       "more": "",
       "skill": "",
+      "note": "Sorry, I missed the explanation of what this means...",
+      "updatedAt": "21/07/2026, 11:01:48"
+    },
+    {
+      "person": "Fawei Geng",
+      "theme": "AI",
+      "workstream": "AI in teaching and learning - define offer",
+      "current": "Leading or co-leading",
+      "more": "",
+      "skill": "Yes",
       "note": "",
-      "updatedAt": "10/07/2026, 12:57:13"
+      "updatedAt": "21/07/2026, 11:01:48"
+    },
+    {
+      "person": "Fawei Geng",
+      "theme": "AI",
+      "workstream": "AI support / upskilling for the DE team",
+      "current": "Leading or co-leading",
+      "more": "",
+      "skill": "Yes",
+      "note": "",
+      "updatedAt": "21/07/2026, 11:01:48"
+    },
+    {
+      "person": "Fawei Geng",
+      "theme": "AI",
+      "workstream": "AI tools in Canvas",
+      "current": "A little",
+      "more": "Maybe",
+      "skill": "Yes",
+      "note": "",
+      "updatedAt": "21/07/2026, 11:01:48"
     },
     {
       "person": "Fawei Geng",
@@ -934,7 +974,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Canvas and Digital Tools",
       "workstream": "Canvas COG",
-      "current": "",
+      "current": "Regularly involved",
       "more": "",
       "skill": "",
       "note": "",
@@ -944,7 +984,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Canvas and Digital Tools",
       "workstream": "Canvas for summative assessment considerations",
-      "current": "",
+      "current": "A little",
       "more": "",
       "skill": "",
       "note": "",
@@ -984,7 +1024,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Communities, Networks, and Sector Engagement",
       "workstream": "AllOxLTs",
-      "current": "",
+      "current": "Leading or co-leading",
       "more": "",
       "skill": "",
       "note": "",
@@ -994,7 +1034,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Communities, Networks, and Sector Engagement",
       "workstream": "CMALT",
-      "current": "",
+      "current": "Leading or co-leading",
       "more": "",
       "skill": "",
       "note": "",
@@ -1004,7 +1044,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Communities, Networks, and Sector Engagement",
       "workstream": "Communities links with Digital Education support resourcing",
-      "current": "",
+      "current": "A little",
       "more": "",
       "skill": "",
       "note": "",
@@ -1014,7 +1054,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Communities, Networks, and Sector Engagement",
       "workstream": "DETUG, Big 6 link and teaching support",
-      "current": "",
+      "current": "Leading or co-leading",
       "more": "",
       "skill": "",
       "note": "",
@@ -1024,7 +1064,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Communities, Networks, and Sector Engagement",
       "workstream": "External communities, eg HELF / IVY / Canvas user group / UCISA / ALT or other",
-      "current": "",
+      "current": "Regularly involved",
       "more": "",
       "skill": "",
       "note": "",
@@ -1034,7 +1074,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Communities, Networks, and Sector Engagement",
       "workstream": "KEFs and other events",
-      "current": "",
+      "current": "A little",
       "more": "",
       "skill": "",
       "note": "",
@@ -1044,7 +1084,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Consultancy",
       "workstream": "Consultancy service updates / enhancements",
-      "current": "",
+      "current": "Regularly involved",
       "more": "",
       "skill": "",
       "note": "",
@@ -1054,7 +1094,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Consultancy",
       "workstream": "Lead and/or coordinate current consultancies",
-      "current": "",
+      "current": "Regularly involved",
       "more": "",
       "skill": "",
       "note": "",
@@ -1064,7 +1104,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Consultancy",
       "workstream": "Lead and/or coordinate new course and assessment (re)design consultancies",
-      "current": "",
+      "current": "A little",
       "more": "",
       "skill": "",
       "note": "",
@@ -1074,7 +1114,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Digital Education Leadership and Governance",
       "workstream": "Any future new roles / JD changes",
-      "current": "",
+      "current": "Not involved",
       "more": "",
       "skill": "",
       "note": "",
@@ -1084,7 +1124,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Digital Education Leadership and Governance",
       "workstream": "CTL review",
-      "current": "Not involved",
+      "current": "Regularly involved",
       "more": "",
       "skill": "",
       "note": "",
@@ -1104,7 +1144,7 @@ window.dashboardData = {
       "person": "Fawei Geng",
       "theme": "Digital Education Leadership and Governance",
       "workstream": "DETSG work",
-      "current": "",
+      "current": "A little",
       "more": "",
       "skill": "",
       "note": "",
@@ -1268,17 +1308,17 @@ window.dashboardData = {
       "more": "Yes",
       "skill": "Yes",
       "note": "",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
       "theme": "Underpinning Themes",
       "workstream": "Alignment with university initiatives and strategies",
-      "current": "",
+      "current": "Regularly involved",
       "more": "",
       "skill": "",
       "note": "Not sure what are included although we have all been working aligned with the  initiatives and strategies",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1288,7 +1328,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "Not sure what are included, the CoPs work are cross -Oxford",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1298,7 +1338,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1308,7 +1348,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "CMALT?",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Fawei Geng",
@@ -1318,7 +1358,7 @@ window.dashboardData = {
       "more": "",
       "skill": "",
       "note": "",
-      "updatedAt": "14/07/2026, 18:39:24"
+      "updatedAt": "21/07/2026, 10:53:58"
     },
     {
       "person": "Jill Fresen",
